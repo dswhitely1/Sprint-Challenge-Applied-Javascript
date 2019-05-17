@@ -2,7 +2,10 @@ class Carousel {
 	constructor(element) {
 		this.element = element;
 		const images = this.element.querySelectorAll('img');
-		images.forEach(image => new CarouselImage(image));
+		this.carouselImage = [];
+		images.forEach((image, i) => {
+			this.carouselImage = [ ...this.carouselImage, new CarouselImage(image) ];
+		});
 		this.currentIndex = 0;
 		this.imageTotal = images.length;
 		this.previousButton = this.element.querySelector(`.left-button`);
@@ -14,6 +17,7 @@ class Carousel {
 		/*
             Going to check if index is < 0 and if true assign next slide to be the last slide
         */
+		this.carouselImage[this.currentIndex].deSelect();
 		this.currentIndex === 0
 			? this.changeCarouselImage(this.imageTotal - 1)
 			: this.changeCarouselImage(this.currentIndex - 1);
@@ -23,12 +27,13 @@ class Carousel {
         going to add + 1 to the current selected Image and error check to make sure it doesn't go over
             the this.imageTotal - 1
         */
+		this.carouselImage[this.currentIndex].deSelect();
 		this.currentIndex === this.imageTotal - 1
 			? this.changeCarouselImage(0)
 			: this.changeCarouselImage(this.currentIndex + 1);
 	}
 	changeCarouselImage(index) {
-		console.log('changing image to index', index);
+		this.carouselImage[index].select();
 		this.currentIndex = index;
 	}
 }
@@ -36,6 +41,12 @@ class Carousel {
 class CarouselImage {
 	constructor(image) {
 		this.image = image;
+	}
+	deSelect() {
+		this.image.classList.remove('selected-img');
+	}
+	select() {
+		this.image.classList.add('selected-img');
 	}
 }
 let carousel = document.querySelector(`.carousel`);
