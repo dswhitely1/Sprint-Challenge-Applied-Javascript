@@ -1,18 +1,35 @@
 class Carousel {
 	constructor(element) {
 		this.element = element;
-		this.images = this.element.querySelectorAll('img');
-		this.imageTotal = this.images.length;
+		const images = this.element.querySelectorAll('img');
+		images.forEach(image => new CarouselImage(image));
+		this.currentIndex = 0;
+		this.imageTotal = images.length;
 		this.previousButton = this.element.querySelector(`.left-button`);
 		this.nextButton = this.element.querySelector(`.right-button`);
 		this.previousButton.addEventListener('click', () => this.handlePreviousClick());
 		this.nextButton.addEventListener('click', () => this.handleNextClick());
 	}
 	handlePreviousClick() {
-		console.log('Previous Click');
+		/*
+            Going to check if index is < 0 and if true assign next slide to be the last slide
+        */
+		this.currentIndex === 0
+			? this.changeCarouselImage(this.imageTotal - 1)
+			: this.changeCarouselImage(this.currentIndex - 1);
 	}
 	handleNextClick() {
-		console.log('Next Click');
+		/* 
+        going to add + 1 to the current selected Image and error check to make sure it doesn't go over
+            the this.imageTotal - 1
+        */
+		this.currentIndex === this.imageTotal - 1
+			? this.changeCarouselImage(0)
+			: this.changeCarouselImage(this.currentIndex + 1);
+	}
+	changeCarouselImage(index) {
+		console.log('changing image to index', index);
+		this.currentIndex = index;
 	}
 }
 
