@@ -32,13 +32,23 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. What is the DOM?
 
+The DOM (Document Object Model)is a cross platform and language-independent API that treats an HTML document as a tree structure wherein each node is an object representing a part of the HTML document.
+
 2. What is an event?
+
+An event is a signal sent from the browser that an interaction, based either on the user or the webpage, has been triggered and an object is passed back from the event.
 
 3. What is an event listener?
 
+An event listener is an assigment that based on what assignment we are looking for, we will then pass in an anonymous function and excute code based on what we want the application to do.
+
 4. Why would we convert a NodeList into an Array?
 
+NodeList has very limited methods and the only one for looping is the ForEach method.  If we need advanced array methods, such as .filter or .map, we would need to use the Array.from() method to convert it to an array and get access to the methods.
+
 5. What is a component?
+
+A component is a reuseable code that can be used when you have multiple items on a webpage that use the same functionality.
 
 ### Git Set up
 
@@ -51,7 +61,7 @@ Edit this document to include your answers after each question. Make sure to lea
 
 Your finished project must include all of the following requirements:
 
-* [ ] Look through the HTML code paying particular attention to the Tabs component and the Cards components. You will notice they share a data attribute. We will be using this data attribute to determine which cards should show when each tab is selected.
+* [x] Look through the HTML code paying particular attention to the Tabs component and the Cards components. You will notice they share a data attribute. We will be using this data attribute to determine which cards should show when each tab is selected.
 
 * [ ] Following the instructions in the `Tabs.js` file, complete the `TabLink`, and `TabCard` class components. It will look and feel very similar to the last project we worked on, but with a twist. Now, instead of one `Item` to display, we will need to display a collection of `Cards`. Think about ways to iterate over an array and manipulate each item.  **Note: You will need to un-comment the code after the lines of instructions.  The code is commented out so you can work error-free**
 
